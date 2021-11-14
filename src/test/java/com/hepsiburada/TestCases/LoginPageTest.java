@@ -18,6 +18,7 @@ public class LoginPageTest extends BaseTest {
     @Test(description = "Kullanıcı bilgileri ile giriş yapılır.")
     public void userLogin() throws InterruptedException {
 
+        boolean returnValue;
         loginPage.clickLoginButtonInHomePage();
         Thread.sleep(2000);
         loginPage.clickLoginLink();
@@ -26,8 +27,10 @@ public class LoginPageTest extends BaseTest {
         loginPage.enterPassword(properties.getProperty("kullaniciSifre"));
         loginPage.clickLoginButton();
         Thread.sleep(2000);
-        Assert.assertTrue(loginPage.isEnteredToAccount(), "Kullanıcı hesabına giriş yapılamadı.");
-        logger.info("Kullanıcı kendi hesabına giriş yaptı.");
+        Assert.assertTrue(returnValue= loginPage.isEnteredToAccount(), "Kullanıcı hesabına giriş yapılamadı.");
+        if(returnValue ==true){
+            logger.info("Kullanıcı kendi hesabına giriş yaptı.");
+        }
     }
 }
 

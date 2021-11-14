@@ -20,8 +20,11 @@ public class AddProductToCartPageTest extends BaseTest {
         Boolean returnValue;
         Boolean returnValue2;
         addProductToCartPage.searchProduct(product);
+        Thread.sleep(2000);
         addProductToCartPage.selectFirstProduct();
+        Thread.sleep(2000);
         addProductToCartPage.addProductsToCartFromSeller1();
+        Thread.sleep(2000);
         addProductToCartPage.addProductsToCartFromSeller2();
         String nameOfSeller1 = null;
         String nameOfSeller2 = null;

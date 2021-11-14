@@ -2,24 +2,27 @@ package com.hepsiburada.Pages;
 
 import com.hepsiburada.BaseTest.BaseTest;
 import com.hepsiburada.BaseTest.CommonFunctions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class AddProductToCartPage extends BaseTest {
 
-    @FindBy(xpath = "//input[@placeholder='Ürün, kategori veya marka ara']")
+    @FindBy(className = "desktopOldAutosuggestTheme-input") //"desktopOldAutosuggestTheme-input"
     private WebElement searchField;
 
-    @FindBy(xpath = "//span[contains(text(),'ARA')]")
+    @FindBy(xpath = "//*[@id='SearchBoxOld']/div/div/div[2]")
     private WebElement btnSearch;
 
-    @FindBy(xpath = "//span[contains(text(),'Nike Air Force Günlük Spor Ayakkabı')]")
+    @FindBy(xpath = "//*[@id='i0']/div/a/div[2]/div[1]/div/picture/img")
     private WebElement btnProduct;
 
-    @FindBy(xpath = "//a[@href='/magaza/mastertradıng']")
+    @FindBy(xpath = "//html/body/div[2]/main/div[3]/section[1]/div[4]/div/div[4]/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td[1]/div[1]/a")
     private WebElement txtNameOfSeller1;
 
-    @FindBy(xpath = "//a[@href='/magaza/novasports']")
+    @FindBy(xpath = "//html/body/div[2]/main/div[3]/section[1]/div[4]/div/div[4]/div[2]/div[2]/div/div[2]/table/tbody/tr[2]/td[1]/div[1]/a[1]")
     private WebElement txtNameOfSeller2;
 
     @FindBy(xpath = "//html/body/div[2]/main/div[3]/section[1]/div[4]/div/div[4]/div[2]/div[2]/div/div[2]/table/tbody/tr[1]/td[3]/div/form/button")
@@ -35,11 +38,10 @@ public class AddProductToCartPage extends BaseTest {
     private WebElement btnGoToCart;
 
     public void searchProduct(String product) throws InterruptedException {
-
-        //Arama alanı null geliyor bu sebeple string yazamıyor!//
-        CommonFunctions.refreshPage();
+        PageFactory.initElements(driver, this);
         searchField.click();
         searchField.sendKeys(product);
+        Thread.sleep(2000);
         btnSearch.click();
     }
 
@@ -48,12 +50,11 @@ public class AddProductToCartPage extends BaseTest {
     }
 
     public String addProductsToCartFromSeller1() {
-
         String nameOfSeller1 = txtNameOfSeller1.getText();
         System.out.println("İlk satıcının adı:" + txtNameOfSeller1);
         btnAddToCart1.click();
         btnCross.click();
-        return nameOfSeller1;
+       return nameOfSeller1;
     }
 
     public String addProductsToCartFromSeller2() {
